@@ -9,12 +9,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SimpleMVC\\": "src/"
+            "DailyNewspaper\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleMVC\\Test\\": "test/"
+            "DailyNewspaper\\Test\\": "test/"
         }
     }
 }

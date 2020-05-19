@@ -1,8 +1,8 @@
-<?php $this->layout('layout', ['title' => 'Home SimpleMVC']) ?>
+<?php $this->layout('layout', ['title' => 'Home']) ?>
 
-<h1>Home page</h1>
-<p>Welcome to <a href="">Simple MVC</a> mini framework.</p>
-<p><strong>Simple MVC</strong> is a tutorial project for introducing the usage of <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> architectural pattern in modern PHP applications.</p>
-
-<?php foreach(): ?>
-<?php endforeach
+<?php foreach($articles as $a): ?>
+    <h3><?=$this->e($a->title)?></h3>
+    <h5>di <?=$this->e($a->author)?></h5>
+    <p><?=$this->e($a->content)?></p>
+    </br>
+<?php endforeach ?>

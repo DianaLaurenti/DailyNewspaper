@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
+require 'config/config.php';
 
 use DI\ContainerBuilder;
-use SimpleMVC\Controller\Error404;
+use DailyNewspaper\Controller\Error404;
 use Zend\Diactoros\ServerRequestFactory;
 
 $builder = new ContainerBuilder();

@@ -1,6 +1,7 @@
 <?php
-use SimpleMVC\Controller;
+use DailyNewspaper\Controller;
 
 return [
-    'GET /' => Controller\Home::class, // "SimpleMVC\Controller\Home"
+    'GET /' => Controller\Home::class,
+    'GET /login' => Controller\Login::class
 ];
