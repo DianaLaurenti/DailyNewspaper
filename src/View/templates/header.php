@@ -1,5 +1,7 @@
-<h1>Daily Niuus</h1>
+<h1>Deily Niuus</h1>
 <div style="display: inline-block">
-  <a href="home.php">Home</a>
-  <a href="login.php">Login</a>
+  <a href="/">Home</a>
+  <a href="login">Login</a>
+  <a href="create">New</a>
+  <a href="edit">Edit</a>
 </div> 

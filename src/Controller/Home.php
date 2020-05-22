@@ -6,21 +6,21 @@ namespace DailyNewspaper\Controller;
 use League\Plates\Engine;
 use Psr\Http\Message\ServerRequestInterface;
 use DailyNewspaper\Model\DbClass;
-use DailyNewspaper\Model\Article;
+use DailyNewspaper\Model\ArticleCRUD;
 
 class Home implements ControllerInterface
 {
     protected $plates;
-    private Article $article;
+    private ArticleCRUD $articleCRUD;
 
-    public function __construct(Engine $plates, Article $article)
+    public function __construct(Engine $plates, ArticleCRUD $articleCRUD)
     {
         $this->plates = $plates;
-        $this->article = $article;
+        $this->articleCRUD = $articleCRUD;
     }
 
     public function execute(ServerRequestInterface $request)
     {
-        echo $this->plates->render('home', ['articles' => $this->article->getTodayArticles()]);
+        echo $this->plates->render('home', ['articles' => $this->articleCRUD::getAll()]);
     }
 }

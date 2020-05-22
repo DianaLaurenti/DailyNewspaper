@@ -7,7 +7,7 @@ use PDO;
 use PDOException;
 use DailyNewspaper\Config;
 
-class Article extends DbClass
+class Article
 {
     private int $article_id;
     private string $title;
@@ -15,54 +15,69 @@ class Article extends DbClass
     private string $date;
     private string $content;
 
-    public function getTodayArticles(): array
+    public function getId() : ?int
     {
-        try {
-            $stmt = $this->pdo->query("SELECT date, title, author, content FROM articles WHERE date = DATE('now');");
-            $articles = [];
-            while ($article = $stmt->fetchObject()) {
-                $articles[] = $article;
-            }
-            return $this->getArticlesExtract($articles);
-         } catch (PDOException $e) {
-            var_dump($e);
-            return [];
-         }
-    }
-
-    private function getArticlesExtract($articles) : array 
-    {
-        if(0===count($articles)){
+        if(isset($this->article_id)){
+            return $this->article_id;
+        }
+        else{
             return null;
         }
-        $extracts = [];
-        foreach($articles as $a)
-        {
-            $extracts[] = $a;
+    }
+    public function setId(int $article_id) : void 
+    {
+        $this->article_id = $article_id;
+    }
+    public function getTitle() : string
+    {
+        if(isset($this->title)){
+            return $this->title;
         }
-        foreach($extracts as $e){
-            $e->content = substr($a->content, 0, 400);
+        else{
+            return "";
         }
-        return $extracts;
     }
-
-    public function getArticle(int $idArticle) : Article
+    public function setTitle(string $title) : void 
     {
-
+        $this->title = $title;
     }
-
-    public function createArticle() : bool
+    public function getAuthor() : string
     {
-
+        if(isset($this->author)){
+            return $this->author;
+        }
+        else{
+            return "";
+        }
     }
-
-    public function updateArticle(int $idArticle) : Article
+    public function setAuthor(string $author) : void 
     {
-
+        $this->author = $author;
     }
-
-    public function deleteArticle(int $idArticle) : Article
+    public function getDate() : string
     {
-
+        if(isset($this->date)){
+            return $this->date;
+        }
+        else{
+            return "";
+        }
+    }
+    public function setDate(string $date) : void 
+    {
+        $this->date = $date;
+    }
+    public function getContent() : string
+    {
+        if(isset($this->content)){
+            return $this->content;
+        }
+        else{
+            return "";
+        }
+    }
+    public function setContent(string $content) : void 
+    {
+        $this->content = $content;
     }
 }
