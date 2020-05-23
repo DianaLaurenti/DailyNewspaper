@@ -31,11 +31,11 @@ class CreateArticle extends ControllerBase
             $success = $this->articleCRUD::createOne($articleArray);
             if(!$success)
             {
-                parent::error($request, 'Non è stato possibile creare l\'articolo. Controlla che tutti i campi siano compilati e che il titolo sia unico.', 422);
+                parent::error(422, 'Non è stato possibile creare l\'articolo. Controlla che tutti i campi siano compilati e che il titolo sia unico.');
             }
             else
             {
-                parent::redirect($request, 'GET', '/');
+                parent::redirect('/');
             }
         }
     }

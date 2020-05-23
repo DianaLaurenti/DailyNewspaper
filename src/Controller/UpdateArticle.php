@@ -31,10 +31,10 @@ class UpdateArticle extends ControllerBase
             $articleArray = $request->getParsedBody();
             $success = $this->articleCRUD::updateOne($articleArray);
             if($success){
-                parent::redirect($request, 'GET', '/edit');
+                parent::redirect('/edit');
                 exit();
             }
-            parent::error($request, 'Non è stato possibile modificare l\'articolo.', 422);
+            parent::error(422, 'Non è stato possibile modificare l\'articolo.');
         }
     }
 }

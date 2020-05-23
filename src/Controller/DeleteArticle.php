@@ -31,10 +31,10 @@ class DeleteArticle extends ControllerBase
             $articleArray = $request->getParsedBody();
             $success = $this->articleCRUD::deleteOne($articleArray['article_id']);
             if($success){
-                parent::redirect($request, 'GET', '/edit');
+                parent::redirect('/edit');
                 exit();
             }
-            parent::error($request, 'Non è stato possibile eliminare l\'articolo.', 422);
+            parent::error(422, 'Non è stato possibile eliminare l\'articolo.');
         }
     }
 }
