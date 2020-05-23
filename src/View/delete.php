@@ -8,6 +8,5 @@
     <h5>di <?=$this->e($article->getAuthor())?></h5>
     <p><?=$this->e($article->getContent())?></p>
     </br>
-    <input type="submit" value="Elimina">
-    <br>
+    <button type="submit" class="btn btn-primary">Elimina</button>
 </form> 

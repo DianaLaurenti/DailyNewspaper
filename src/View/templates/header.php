@@ -1,8 +1,13 @@
-<h1>Deily Niuus</h1>
+<br>
+<h1><b>Deily Niuus</b></h1>
 
-<div style="display: inline-block">
-  <a href="/">Home</a>
-  <a href="login">Login</a>
-  <a href="create">New</a>
-  <a href="edit">Edit</a>
-</div> 
+<nav class="nav">
+  <a class="nav-link" href="/">Home</a>
+  <a class="nav-link" href="login">Login</a>
+
+  <?php if(isset($_SESSION['user'])): ?>
+    <a class="nav-link" href="create">New</a>
+    <a class="nav-link" href="edit">Edit</a>
+  <?php endif ?>
+</nav>
+<br>

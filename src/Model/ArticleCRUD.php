@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace DailyNewspaper\Model;
 
-use PDO;
 use PDOException;
-use DailyNewspaper\Config;
 
 class ArticleCRUD extends DbClass
 {
@@ -90,13 +88,14 @@ class ArticleCRUD extends DbClass
     public static function getOne($idArticle) : ?Article
     {
         try {
-            $stmt = self::$pdo->prepare("SELECT article_id, date, title, author, content FROM articles WHERE article_id = :article_id;");
+            $stmt = self::$pdo->prepare("SELECT article_id, date, title, author, content "
+                ."FROM articles WHERE article_id = :article_id;");
             $stmt->execute([':article_id' => $idArticle]);
             return self::arrayToArticle($stmt->fetchObject());
-         } catch (PDOException $e) {
+        } catch (PDOException $e) {
             var_dump($e);
             return null;
-         }
+        }
     }
 
     public static function createOne($articleArray) : bool

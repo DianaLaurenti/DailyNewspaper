@@ -3,10 +3,6 @@ declare(strict_types=1);
 
 namespace DailyNewspaper\Model;
 
-use PDO;
-use PDOException;
-use DailyNewspaper\Config;
-
 class Article
 {
     private int $article_id;

@@ -4,6 +4,7 @@ use DailyNewspaper\Controller;
 return [
     'GET /' => Controller\Home::class,
     'GET /login' => Controller\Login::class,
+    'POST /login' => Controller\Login::class,
     'GET /article' => Controller\GetArticle::class,
     'GET /create' => Controller\CreateArticle::class,
     'POST /create' => Controller\CreateArticle::class,

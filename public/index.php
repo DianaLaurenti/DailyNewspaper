@@ -9,6 +9,8 @@ use DI\ContainerBuilder;
 use DailyNewspaper\Controller\Error404;
 use Zend\Diactoros\ServerRequestFactory;
 
+session_start();
+
 $builder = new ContainerBuilder();
 $builder->addDefinitions('config/container.php');
 $container = $builder->build();
