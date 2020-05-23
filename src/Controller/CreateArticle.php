@@ -32,13 +32,6 @@ class CreateArticle extends ControllerBase
             if(!$success)
             {
                 parent::error($request, 'Non è stato possibile creare l\'articolo. Controlla che tutti i campi siano compilati e che il titolo sia unico.', 422);
-                /* $uri = $request->getUri()->withPath('/');
-                $newRequest = $request->withUri($uri);
-                
-                $newRequest = $newRequest->withHeader('errorMessage', 'Non è stato possibile creare l\'articolo. Controlla che tutti i campi siano compilati e che il titolo sia unico.');
-                
-                $error = new Error422($this->plates);
-                $error->execute($newRequest); */
             }
             else
             {

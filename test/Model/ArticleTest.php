@@ -23,10 +23,8 @@ final class ArticleTest extends TestCase
      * @dataProvider getArticleArray 
      */    
     public function testArrayToArticleReturnsArray($array)
-    {
-        var_dump($array);      
+    { 
         $newArticle = $this->articleCRUD::arrayToArticle($array);
-        var_dump($newArticle);       
         $this->assertInstanceOf(Article::class, $newArticle);
     }
     public function getArticleArray()
@@ -53,8 +51,7 @@ final class ArticleTest extends TestCase
      */
     public function testArrayToArticleReturnsNull($array)
     {
-        $newArticle = $this->articleCRUD::arrayToArticle($array); 
-        var_dump($newArticle);   
+        $newArticle = $this->articleCRUD::arrayToArticle($array);
         $this->assertTrue($newArticle == null);
     }
     public function getNoArticleArray()
