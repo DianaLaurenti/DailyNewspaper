@@ -3,7 +3,6 @@ use League\Plates\Engine;
 use Psr\Container\ContainerInterface;
 use DailyNewspaper\Model\DbClass;
 use DailyNewspaper\Model\SQLiteConnection;
-use DailyNewspaper\Config;
 
 return [
     'view_path' => 'src/View',

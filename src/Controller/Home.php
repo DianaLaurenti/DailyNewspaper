@@ -8,14 +8,13 @@ use Psr\Http\Message\ServerRequestInterface;
 use DailyNewspaper\Model\DbClass;
 use DailyNewspaper\Model\ArticleCRUD;
 
-class Home implements ControllerInterface
+class Home extends ControllerBase
 {
-    protected $plates;
     private ArticleCRUD $articleCRUD;
 
     public function __construct(Engine $plates, ArticleCRUD $articleCRUD)
     {
-        $this->plates = $plates;
+        parent::__construct($plates);
         $this->articleCRUD = $articleCRUD;
     }
 

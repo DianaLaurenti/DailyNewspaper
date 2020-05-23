@@ -6,13 +6,11 @@ namespace DailyNewspaper\Controller;
 use League\Plates\Engine;
 use Psr\Http\Message\ServerRequestInterface;
 
-class Error422 implements ControllerInterface
+class Error422 extends ControllerBase
 {
-    protected $plates;
-
     public function __construct(Engine $plates)
     {
-        $this->plates = $plates;
+        parent::__construct($plates);
     }
 
     public function execute(ServerRequestInterface $request)

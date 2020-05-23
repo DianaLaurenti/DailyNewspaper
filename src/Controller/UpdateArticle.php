@@ -9,14 +9,13 @@ use Psr\Http\Message\ResponseInterface;
 use DailyNewspaper\Model\DbClass;
 use DailyNewspaper\Model\ArticleCRUD;
 
-class UpdateArticle implements ControllerInterface
+class UpdateArticle extends ControllerBase
 {
-    protected $plates;
     private ArticleCRUD $articleCRUD;
 
     public function __construct(Engine $plates, ArticleCRUD $articleCRUD)
     {
-        $this->plates = $plates;
+        parent::__construct($plates);
         $this->articleCRUD = $articleCRUD;
     }
 
@@ -32,13 +31,10 @@ class UpdateArticle implements ControllerInterface
             $articleArray = $request->getParsedBody();
             $success = $this->articleCRUD::updateOne($articleArray);
             if($success){
-                $home = new EditArticle($this->plates, $this->articleCRUD);
-                $home->execute($request);
+                parent::redirect($request, 'GET', '/edit');
                 exit();
             }
-            $request = $request->withHeader('errorMessage', 'Non è stato possibile modificare l\'articolo. Controlla che tutti i campi siano compilati e che il titolo sia unico.');             
-            $error = new Error422($this->plates);
-            $error->execute($request);
+            parent::error($request, 'Non è stato possibile modificare l\'articolo.', 422);
         }
     }
 }

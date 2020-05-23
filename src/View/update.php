@@ -1,6 +1,7 @@
 <?php $this->layout('layout', ['title' => 'Update Article']) ?>
 
 <h2 style="color:#ff33c1">Effettua le modifice e salva</h2>
+
 <form action = "update" method="POST">
     <input type="hidden" name="article_id" value="<?=$article->getId()?>"><br>
     <label for="author">Author:</label><br>

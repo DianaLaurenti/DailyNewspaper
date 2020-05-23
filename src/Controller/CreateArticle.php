@@ -9,14 +9,13 @@ use Psr\Http\Message\ResponseInterface;
 use DailyNewspaper\Model\DbClass;
 use DailyNewspaper\Model\ArticleCRUD;
 
-class CreateArticle implements ControllerInterface
+class CreateArticle extends ControllerBase
 {
-    protected $plates;
     private ArticleCRUD $articleCRUD;
 
     public function __construct(Engine $plates, ArticleCRUD $articleCRUD)
     {
-        $this->plates = $plates;
+        parent::__construct($plates);
         $this->articleCRUD = $articleCRUD;
     }
 
@@ -32,18 +31,18 @@ class CreateArticle implements ControllerInterface
             $success = $this->articleCRUD::createOne($articleArray);
             if(!$success)
             {
-                $uri = $request->getUri()->withPath('/');
+                parent::error($request, 'Non è stato possibile creare l\'articolo. Controlla che tutti i campi siano compilati e che il titolo sia unico.', 422);
+                /* $uri = $request->getUri()->withPath('/');
                 $newRequest = $request->withUri($uri);
-                //var_dump($newRequest->getUri());
+                
                 $newRequest = $newRequest->withHeader('errorMessage', 'Non è stato possibile creare l\'articolo. Controlla che tutti i campi siano compilati e che il titolo sia unico.');
                 
                 $error = new Error422($this->plates);
-                $error->execute($newRequest);
+                $error->execute($newRequest); */
             }
             else
             {
-                $home = new Home($this->plates, $this->articleCRUD);
-                $home->execute($request);
+                parent::redirect($request, 'GET', '/');
             }
         }
     }

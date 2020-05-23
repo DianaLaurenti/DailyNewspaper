@@ -1,5 +1,7 @@
 <?php $this->layout('layout', ['title' => 'New Article']) ?>
+
 <h2 style="color:#ff33c1">Crea un nuovo articolo</h2>
+
 <form action = "create" method="POST">
   <br>
   <label for="author">Author:</label><br>
