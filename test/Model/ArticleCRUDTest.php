@@ -9,8 +9,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use DailyNewspaper\Model\ArticleCRUD;
 use DailyNewspaper\Model\Article;
 use PDO;
+use PDOStatement;
 
-final class ArticleTest extends TestCase
+final class ArticleCRUDTest extends TestCase
 {
     public function setUp(): void
     {
@@ -82,14 +83,34 @@ final class ArticleTest extends TestCase
         ];
     }
 
-    /* public function testGetTodayArticlesIsEmpty() : void
+    public function testGetOne() : void
     {
-        $this->assertEmpty($this->article->getTodayArticles());
-    }
+        $articleRow = new Article();
+        $articleRow->setId(1);
+        $articleRow->setDate("2020-05-25");
+        $articleRow->setTitle("Fake news");
+        $articleRow->setAuthor("Fake author");
+        $articleRow->setContent("Fake content");
 
-    public function testGetArticle(): void
-    {
-        $this->expectOutputString($this->plates->render('home'));
-        $this->home->execute($this->request);
-    } */
+        $mockStmt = $this->getMockBuilder()
+            ->setMethods(array("execute","fetchObject"))
+            ->getMock();
+        $mockStmt->expects($this->once())->method("execute")
+            ->with($this->equalTo(array(':article_id' => 1)))
+            ->will($this->returnValue("true"));
+        $mockStmt->expects($this->once())->method("fetchObject")
+            ->will($this->returnValue($articleRow));
+
+        $mockPdo = $this->getMockBuilder(PDO::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array("prepare"))
+            ->getMock();
+        $mockPdo->expects($this->once())->method("prepare")
+            ->with($this->stringContains("SELECT article_id, date, title, author, content FROM articles WHERE article_id = :article_id;"))
+            ->will($this->returnValue($mockStmt));
+        
+        var_dump($this->articleCRUD::getOne(1));
+        $articleCRUD = new ArticleCRUD($mockPdo);
+        $this->assertEquals($articleRow, $this->articleCRUD::getOne(1));    
+    }
 }
